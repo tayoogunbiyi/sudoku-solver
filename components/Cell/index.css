@@ -1,0 +1,10 @@
+.cell-wrapper {
+  border: 2px solid black;
+  padding: 25px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.cell-wrapper:last-child {
+  border-right: 2px solid black;
+}
