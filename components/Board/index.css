@@ -1,0 +1,11 @@
+.btn-group {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  padding: 5px;
+  color: red;
+}

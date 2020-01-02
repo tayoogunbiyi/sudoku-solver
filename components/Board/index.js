@@ -1,5 +1,6 @@
 import React from "react";
 import Row from "../Row";
+import Button from "../Button";
 
 import "./index.css";
 
@@ -46,7 +47,15 @@ class Board extends React.Component {
     });
   }
   render() {
-    return <div className="board">{this.renderRows(rowData)}</div>;
+    return (
+      <div>
+        <div className="board">{this.renderRows(rowData)}</div>
+        <div className="btn-group">
+          <Button buttonText="Reset Board" />
+          <Button buttonText="Solve Board" />
+        </div>
+      </div>
+    );
   }
 }
 

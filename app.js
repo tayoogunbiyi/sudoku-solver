@@ -2,10 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Board from "./components/Board";
 import "./index.css";
+import Button from "./components/Button";
 
 class App extends React.Component {
   render() {
-    return <Board />;
+    return (
+      <div>
+        <Board />
+      </div>
+    );
   }
 }
 
