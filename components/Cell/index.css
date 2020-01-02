@@ -1,5 +1,6 @@
 .cell-wrapper {
   border: 2px solid black;
+  font-size: 20px;
   padding: 25px;
   border-right: none;
   border-bottom: none;
@@ -7,4 +8,11 @@
 
 .cell-wrapper:last-child {
   border-right: 2px solid black;
+}
+
+@media only screen and (max-width: 600px) {
+  .cell-wrapper {
+    padding: 12px;
+    font-size: 10px;
+  }
 }
