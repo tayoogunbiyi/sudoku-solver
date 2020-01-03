@@ -14,10 +14,10 @@ class Board extends React.Component {
     };
   }
   renderRows() {
-    const value = Math.ceil(1 + Math.random() * 8);
-    const row = Math.floor(Math.random() * 8);
-    const col = Math.floor(Math.random() * 8);
-    setTimeout(() => this.updateBoardAt(value, row, col), 1000);
+    //const value = Math.ceil(1 + Math.random() * 8);
+    //const row = Math.floor(Math.random() * 8);
+    //const col = Math.floor(Math.random() * 8);
+    //setTimeout(() => this.updateBoardAt(value, row, col), 1000);
     const { board } = this.state;
     return board.map((cellData, idx) => {
       return <Row key={idx} cellData={cellData} />;
