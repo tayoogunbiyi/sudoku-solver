@@ -6,6 +6,10 @@
   border-bottom: none;
 }
 
+.generated-cell {
+  color: red;
+}
+
 .cell-wrapper:last-child {
   border-right: 2px solid black;
 }

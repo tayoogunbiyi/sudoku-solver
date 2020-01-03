@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { CellTypes } from "../../constants";
 
 import "./index.css";
 
@@ -7,11 +7,18 @@ const CellWrapper = ({ children }) => (
   <div className="cell-wrapper">{children}</div>
 );
 
-const Cell = ({ value }) => {
-  console.log(value || 1020);
+const buildCellClassName = cellType => {
+  if (cellType == CellTypes.GENERATED) {
+    return `cell generated-cell`;
+  }
+  return `cell default-cell`;
+};
+
+const Cell = ({ value, cellType }) => {
+  const classNameString = buildCellClassName(cellType);
   return (
     <CellWrapper>
-      <div className="cell">{value}</div>
+      <div className={classNameString}>{value}</div>
     </CellWrapper>
   );
 };

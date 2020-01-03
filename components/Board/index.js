@@ -1,36 +1,45 @@
 import React from "react";
 import Row from "../Row";
 import Button from "../Button";
-
+import { CellTypes } from "../../constants";
 import "./index.css";
 
 const cellData = [
   {
-    value: 8
+    value: 8,
+    cellType: CellTypes.DEFAULT
   },
   {
-    value: 1
+    value: 1,
+    cellType: CellTypes.DEFAULT
   },
   {
-    value: 2
+    value: 2,
+    cellType: CellTypes.GENERATED
   },
   {
-    value: 7
+    value: 7,
+    cellType: CellTypes.DEFAULT
   },
   {
-    value: 3
+    value: 3,
+    cellType: CellTypes.GENERATED
   },
   {
-    value: 4
+    value: 4,
+    cellType: CellTypes.GENERATED
   },
   {
-    value: 5
+    value: 2,
+    cellType: CellTypes.GENERATED
   },
   {
-    value: 9
+    value: 9,
+    cellType: CellTypes.DEFAULT
   },
   {
-    value: 6
+    value: 6,
+    cellType: CellTypes.GENERATED
   }
 ];
 

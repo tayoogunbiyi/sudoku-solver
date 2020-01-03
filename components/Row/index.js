@@ -6,8 +6,8 @@ import "./index.css";
 const Row = ({ cellData }) => {
   return (
     <div className="row">
-      {cellData.map(({ value }, idx) => (
-        <Cell key={idx} value={value} />
+      {cellData.map(({ value, cellType }, idx) => (
+        <Cell key={idx} value={value} cellType={cellType} />
       ))}
     </div>
   );
