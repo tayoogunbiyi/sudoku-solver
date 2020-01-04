@@ -3,7 +3,21 @@ import ReactDOM from "react-dom";
 import Board from "./components/Board";
 import "./index.css";
 import Button from "./components/Button";
-import { CellTypes } from "./constants";
+import { CellTypes, Boards } from "./constants";
+
+const buildBoard = () => {
+  const n = Boards.length - 1;
+  const boardIdx = Math.floor(Math.random() * (n + 1));
+  const board = Boards[boardIdx];
+  for (let i = 0; i < board.length; i++) {
+    board[i] = {
+      value: board[i],
+      cellType: CellTypes.DEFAULT
+    };
+  }
+  console.log(board);
+  return board;
+};
 
 const cellData = [
   {
@@ -52,6 +66,7 @@ for (let i = 0; i < 9; i++) {
 
 class App extends React.Component {
   render() {
+    console.log(buildBoard());
     return (
       <div>
         <Board boardData={boardInitialData} />
