@@ -1,21 +1,114 @@
+const CellTypes = {
+  DEFAULT: "DEFAULT",
+  GENERATED: "GENERATED",
+  BLANK: "BLANK"
+};
+
 const Boards = [
   [
-    [5, 3, 0, 0, 7, 0, 0, 0, 0],
-    [6, 0, 0, 1, 9, 5, 0, 0, 0],
-    [0, 9, 8, 0, 0, 0, 0, 6, 0],
-    [8, 0, 0, 0, 6, 0, 0, 0, 3],
-    [4, 0, 0, 8, 0, 3, 0, 0, 1],
-    [7, 0, 0, 0, 2, 0, 0, 0, 6],
-    [0, 6, 0, 0, 0, 0, 2, 8, 0],
-    [0, 0, 0, 4, 1, 9, 0, 0, 5],
-    [0, 0, 0, 0, 8, 0, 0, 7, 9]
+    [
+      { value: 5, cellType: CellTypes.DEFAULT },
+      { value: 3, cellType: CellTypes.DEFAULT },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 7, cellType: CellTypes.DEFAULT },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK }
+    ],
+    [
+      { value: 6, cellType: CellTypes.DEFAULT },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 1, cellType: CellTypes.DEFAULT },
+      { value: 9, cellType: CellTypes.DEFAULT },
+      { value: 5, cellType: CellTypes.DEFAULT },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK }
+    ],
+    [
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 9, cellType: CellTypes.DEFAULT },
+      { value: 8, cellType: CellTypes.DEFAULT },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 6, cellType: CellTypes.DEFAULT },
+      { value: 0, cellType: CellTypes.BLANK }
+    ],
+    [
+      { value: 8, cellType: CellTypes.DEFAULT },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 6, cellType: CellTypes.DEFAULT },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.DEFAULT },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 3, cellType: CellTypes.DEFAULT }
+    ],
+    [
+      { value: 4, cellType: CellTypes.DEFAULT },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 8, cellType: CellTypes.DEFAULT },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 3, cellType: CellTypes.DEFAULT },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 1, cellType: CellTypes.DEFAULT }
+    ],
+    [
+      { value: 7, cellType: CellTypes.DEFAULT },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 2, cellType: CellTypes.DEFAULT },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 6, cellType: CellTypes.DEFAULT }
+    ],
+    [
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 6, cellType: CellTypes.DEFAULT },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 2, cellType: CellTypes.DEFAULT },
+      { value: 8, cellType: CellTypes.DEFAULT },
+      { value: 0, cellType: CellTypes.BLANK }
+    ],
+    [
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 4, cellType: CellTypes.DEFAULT },
+      { value: 1, cellType: CellTypes.DEFAULT },
+      { value: 9, cellType: CellTypes.DEFAULT },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 5, cellType: CellTypes.DEFAULT }
+    ],
+    [
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 8, cellType: CellTypes.DEFAULT },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 0, cellType: CellTypes.BLANK },
+      { value: 7, cellType: CellTypes.DEFAULT },
+      { value: 9, cellType: CellTypes.DEFAULT }
+    ]
   ]
 ];
 
 module.exports = {
-  CellTypes: {
-    DEFAULT: "DEFAULT",
-    GENERATED: "GENERATED"
-  },
+  CellTypes,
   Boards
 };

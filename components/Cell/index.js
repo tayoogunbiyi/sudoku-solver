@@ -10,6 +10,8 @@ const CellWrapper = ({ children }) => (
 const buildCellClassName = cellType => {
   if (cellType == CellTypes.GENERATED) {
     return `cell generated-cell`;
+  } else if (cellType == CellTypes.BLANK) {
+    return `cell blank-cell`;
   }
   return `cell default-cell`;
 };
