@@ -8,7 +8,7 @@ class Solver {
     this.board = board;
   }
   solveSudoku = () => {
-    console.log("FINAL RESULT ->", this.solveUtil(0, 0));
+    this.solveUtil(0, 0);
   };
 
   isValidSudoku = (row, col) => {
@@ -20,16 +20,15 @@ class Solver {
   };
 
   checkBoardRow = row => {
-    console.log("checking row,", row);
     const seenValues = new Set();
     for (let i = 0; i < this.board.length; i++) {
       if (
-        this.board[row][i].value != EMPTY_ENTRY &&
-        seenValues.has(this.board[row][i].value)
+        Number(this.board[row][i].value) !== EMPTY_ENTRY &&
+        seenValues.has(Number(this.board[row][i].value))
       ) {
         return false;
       }
-      seenValues.add(this.board[row][i].value);
+      seenValues.add(Number(this.board[row][i].value));
     }
     return true;
   };
@@ -38,12 +37,12 @@ class Solver {
     const seenValues = new Set();
     for (let i = 0; i < this.board.length; i++) {
       if (
-        this.board[i][col].value !== EMPTY_ENTRY &&
-        seenValues.has(this.board[i][col].value)
+        Number(this.board[i][col].value) !== EMPTY_ENTRY &&
+        seenValues.has(Number(this.board[i][col].value))
       ) {
         return false;
       }
-      seenValues.add(this.board[i][col].value);
+      seenValues.add(Number(this.board[i][col].value));
     }
     return true;
   };
@@ -57,11 +56,11 @@ class Solver {
     for (let r = START_ROW; r < START_ROW + SUBGRID_SIZE; r++) {
       for (let c = START_COL; c < START_COL + SUBGRID_SIZE; c++) {
         if (
-          this.board[r][c].value !== EMPTY_ENTRY &&
-          seenValues.has(this.board[r][c].value)
+          Number(this.board[r][c].value) !== EMPTY_ENTRY &&
+          seenValues.has(Number(this.board[r][c].value))
         )
           return false;
-        seenValues.add(this.board[r][c].value);
+        seenValues.add(Number(this.board[r][c].value));
       }
     }
     return true;
@@ -75,12 +74,11 @@ class Solver {
       return this.solveUtil(row, col + 1);
 
     for (let i = 1; i <= this.board.length; i += 1) {
-      this.board[row][col].value = String(i);
-      this.onUpdate(String(i), row, col);
+      this.board[row][col].value = i;
+      this.onUpdate(i, row, col);
       if (this.isValidSudoku(row, col) && this.solveUtil(row, col + 1)) {
         return true;
       }
-      console.log("FAILED...backtracking");
     }
     this.board[row][col].value = EMPTY_ENTRY;
     this.onUpdate(EMPTY_ENTRY, row, col);

@@ -46,7 +46,7 @@ const Boards = [
       { value: 0, cellType: CellTypes.BLANK },
       { value: 6, cellType: CellTypes.DEFAULT },
       { value: 0, cellType: CellTypes.BLANK },
-      { value: 0, cellType: CellTypes.DEFAULT },
+      { value: 0, cellType: CellTypes.BLANK },
       { value: 0, cellType: CellTypes.BLANK },
       { value: 3, cellType: CellTypes.DEFAULT }
     ],

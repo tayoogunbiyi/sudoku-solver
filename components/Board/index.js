@@ -22,12 +22,10 @@ class Board extends React.Component {
     });
   }
   startSolve = () => {
-    console.log("starting solution...");
     const { board } = this.state;
     const solver = new Solver(board, this.queueUpdates);
-    console.log(solver);
     solver.solveSudoku();
-    setInterval(this.applyUpdates, 500);
+    setInterval(this.applyUpdates, 10);
   };
 
   applyUpdates = () => {
@@ -36,8 +34,8 @@ class Board extends React.Component {
       const { row, col, value } = updateQueue.shift();
       const { board } = this.state;
       board[row][col] = {
-        value,
-        cellType: CellTypes.GENERATED
+        value: Number(value),
+        cellType: value !== 0 ? CellTypes.GENERATED : CellTypes.BLANK
       };
       this.setState({
         board
