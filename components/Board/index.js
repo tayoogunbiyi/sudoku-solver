@@ -1,6 +1,7 @@
 import React from "react";
 import Row from "../Row";
 import Button from "../Button";
+import Solver from "../../solver";
 
 import { CellTypes } from "../../constants";
 import "./index.css";
@@ -10,30 +11,43 @@ class Board extends React.Component {
     super(props);
     const { boardData } = props;
     this.state = {
-      board: boardData
+      board: boardData,
+      updateQueue: []
     };
   }
   renderRows() {
-    //const value = Math.ceil(1 + Math.random() * 8);
-    //const row = Math.floor(Math.random() * 8);
-    //const col = Math.floor(Math.random() * 8);
-    //setTimeout(() => this.updateBoardAt(value, row, col), 1000);
     const { board } = this.state;
     return board.map((cellData, idx) => {
       return <Row key={idx} cellData={cellData} />;
     });
   }
-  updateBoardAt = (value, row, col) => {
+  startSolve = () => {
+    console.log("starting solution...");
     const { board } = this.state;
-    console.log(board[row]);
-    board[row][col] = {
-      value,
-      cellType: CellTypes.GENERATED
-    };
-    console.log(board[row]);
-    this.setState({
-      board
-    });
+    const solver = new Solver(board, this.queueUpdates);
+    console.log(solver);
+    solver.solveSudoku();
+    setInterval(this.applyUpdates, 500);
+  };
+
+  applyUpdates = () => {
+    const { updateQueue } = this.state;
+    if (updateQueue.length > 0) {
+      const { row, col, value } = updateQueue.shift();
+      const { board } = this.state;
+      board[row][col] = {
+        value,
+        cellType: CellTypes.GENERATED
+      };
+      this.setState({
+        board
+      });
+    }
+  };
+
+  queueUpdates = (value, row, col) => {
+    const { updateQueue } = this.state;
+    updateQueue.push({ row, col, value });
   };
   render() {
     return (
@@ -41,7 +55,7 @@ class Board extends React.Component {
         <div className="board">{this.renderRows()}</div>
         <div className="btn-group">
           <Button buttonText="Reset Board" />
-          <Button buttonText="Solve Board" />
+          <Button buttonText="Solve Board" onClick={this.startSolve} />
         </div>
       </div>
     );
