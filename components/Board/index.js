@@ -25,7 +25,7 @@ class Board extends React.Component {
     const { board } = this.state;
     const solver = new Solver(board, this.queueUpdates);
     solver.solveSudoku();
-    setInterval(this.applyUpdates, 10);
+    setInterval(this.applyUpdates, 1);
   };
 
   applyUpdates = () => {
