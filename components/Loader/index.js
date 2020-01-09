@@ -5,6 +5,6 @@ import "./style.css";
 
 export default () => (
   <div className="spinner">
-    <Loader type="Triangle" color="#d84054" height={500} width={400} />
+    <Loader type="Triangle" color="#d84054" height={375} width={400} />
   </div>
 );
