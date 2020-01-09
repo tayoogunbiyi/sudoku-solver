@@ -91,7 +91,7 @@ class Board extends React.Component {
     const { updateQueue } = this.state;
     updateQueue.push({ row, col, value });
   };
-  
+
   clearUpdateBoardInterval = () => {
     const { intervalNumber } = this.state;
     if (intervalNumber) {
@@ -137,19 +137,21 @@ class Board extends React.Component {
           </p>
           <p>
             {" "}
-            - Clicking the{" "}
-            <span className="bg-special">Solve Board In Steps</span> button
-            solves the board in steps, and shows you the backtracking process on
-            the board (i.e how it undoes it choices and makes new ones
-            recursively). Please note that using this might take some time to
-            complete running due to the process of having the visually display
-            each decision attempted by the algorithm
+            - Clicking the <span className="bg-special">
+              Solve In Steps
+            </span>{" "}
+            button solves the board in steps, and shows you the backtracking
+            process on the board (i.e how it undoes it choices and makes new
+            ones recursively). Please note that using this might take some time
+            to complete running due to the process of having the visually
+            display each decision attempted by the algorithm
           </p>
           <p>
             {" "}
-            - Clicking the{" "}
-            <span className="bg-special">Solve Board Instantly</span> button
-            solves the board in steps, and but{" "}
+            - Clicking the <span className="bg-special">
+              Solve Instantly
+            </span>{" "}
+            button solves the board in steps, and but{" "}
             <b>
               does not show you the backtracking process on the board's UI.{" "}
             </b>
