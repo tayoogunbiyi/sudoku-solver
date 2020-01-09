@@ -9,3 +9,9 @@
   padding: 5px;
   color: red;
 }
+
+.bg-special {
+  background: burlywood;
+  padding: 4.5px;
+  font-style: italic;
+}
