@@ -22,8 +22,12 @@ class Board extends React.Component {
       return <Row key={idx} cellData={cellData} />;
     });
   }
+
   startSolve = () => {
-    if (this.state.solving) return;
+    if (this.state.solving) {
+      console.log("Board is currently in solving state");
+      return;
+    }
     const { board } = this.state;
     this.setState({ solving: true });
     const solver = new Solver(board, this.queueUpdates);
@@ -38,6 +42,33 @@ class Board extends React.Component {
     const intervalNumber = setInterval(this.applyUpdates, 1);
     this.setState({
       intervalNumber
+    });
+  };
+
+  startInstantSolve = () => {
+    console.log("starting instant solvee ", !this.state.solving);
+    if (this.state.solving) {
+      console.log("Board is currently in solving state");
+      return;
+    }
+    this.setState({ solving: true });
+    const { board } = this.state;
+    const solver = new Solver(board, (value, row, col) => {
+      board[row][col] = {
+        value: Number(value),
+        cellType: value !== 0 ? CellTypes.GENERATED : CellTypes.BLANK
+      };
+      this.setState({
+        board
+      });
+    });
+    solver.solveSudoku(err => {
+      if (err) {
+        alert(err);
+      }
+      this.setState({
+        solving: false
+      });
     });
   };
 
@@ -60,6 +91,7 @@ class Board extends React.Component {
     const { updateQueue } = this.state;
     updateQueue.push({ row, col, value });
   };
+  
   clearUpdateBoardInterval = () => {
     const { intervalNumber } = this.state;
     if (intervalNumber) {
@@ -87,9 +119,42 @@ class Board extends React.Component {
           />
           <Button
             disabled={this.state.solving}
-            buttonText="Solve Board"
+            buttonText="Solve Board In Steps"
             onClick={this.startSolve}
           />
+          <Button
+            disabled={this.state.solving}
+            buttonText="Solve Board Instantly"
+            onClick={this.startInstantSolve}
+          />
+        </div>
+        <div>
+          <h3>HOW TO USE</h3>
+          <p>
+            {" "}
+            - Clicking the <span className="bg-special">Reset Board</span>{" "}
+            button basically gives you a new board to try out the program on.
+          </p>
+          <p>
+            {" "}
+            - Clicking the{" "}
+            <span className="bg-special">Solve Board In Steps</span> button
+            solves the board in steps, and shows you the backtracking process on
+            the board (i.e how it undoes it choices and makes new ones
+            recursively). Please note that using this might take some time to
+            complete running due to the process of having the visually display
+            each decision attempted by the algorithm
+          </p>
+          <p>
+            {" "}
+            - Clicking the{" "}
+            <span className="bg-special">Solve Board Instantly</span> button
+            solves the board in steps, and but{" "}
+            <b>
+              does not show you the backtracking process on the board's UI.{" "}
+            </b>
+            It simply applies the final result to the board.
+          </p>
         </div>
       </div>
     );
