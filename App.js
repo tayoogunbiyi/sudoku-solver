@@ -1,16 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Board from "./components/Board";
+import { buildBoard } from "./util";
 import "./index.css";
 import Button from "./components/Button";
-import { CellTypes, Boards } from "./constants";
-
-const buildBoard = () => {
-  const n = Boards.length - 1;
-  const boardIdx = Math.floor(Math.random() * (n + 1));
-  const board = Boards[boardIdx];
-  return board;
-};
 
 class App extends React.Component {
   render() {

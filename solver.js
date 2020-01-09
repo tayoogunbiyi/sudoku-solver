@@ -7,8 +7,10 @@ class Solver {
     this.onUpdate = cb;
     this.board = board;
   }
-  solveSudoku = () => {
-    this.solveUtil(0, 0);
+  solveSudoku = cb => {
+    if (this.solveUtil(0, 0)) {
+      cb(null);
+    }
   };
 
   isValidSudoku = (row, col) => {
