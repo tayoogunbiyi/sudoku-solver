@@ -6,8 +6,27 @@
 }
 
 .btn {
-  padding: 5px;
-  color: red;
+  margin: 8px;
+  background-color: #d84054;
+  border: none;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+}
+
+.btn:disabled {
+  background-color: #cccccc;
+  color: #666666;
+}
+
+@media only screen and (max-width: 600px) {
+  .btn {
+    font-size: 10px;
+  }
 }
 
 .bg-special {
