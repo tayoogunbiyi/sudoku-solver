@@ -6,6 +6,7 @@ import { buildBoard } from "../../util";
 import { CellTypes } from "../../constants";
 import "./index.css";
 import Loader from "../Loader";
+import SpeedControl from "../SpeedControls";
 
 class Board extends React.Component {
   constructor(props) {
@@ -28,6 +29,20 @@ class Board extends React.Component {
     });
   }
 
+  convertSpeedToMS = speed => {
+    const baseSpeed = 20;
+    switch (speed) {
+      case "0.5x":
+        return baseSpeed * 0.5;
+      case "1x":
+        return baseSpeed;
+      case "2x":
+        return baseSpeed * 2;
+      default:
+        return baseSpeed;
+    }
+  };
+
   startSolve = () => {
     if (this.state.solving) {
       console.log("Board is currently in solving state");
@@ -45,7 +60,11 @@ class Board extends React.Component {
         solving: false
       });
     });
-    const intervalNumber = setInterval(this.applyUpdates, 1);
+    const currentSpeed = window.localStorage.getItem("speed");
+    const intervalNumber = setInterval(
+      this.applyUpdates,
+      this.convertSpeedToMS()
+    );
     this.setState({
       intervalNumber
     });
@@ -123,6 +142,7 @@ class Board extends React.Component {
     return (
       <div>
         <div className="board">{this.renderRows()}</div>
+        <SpeedControl />
         <div className="btn-group">
           <Button
             disabled={isSolving}
