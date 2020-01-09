@@ -29,6 +29,7 @@ class Board extends React.Component {
       return;
     }
     const { board } = this.state;
+
     this.setState({ solving: true });
     const solver = new Solver(board, this.queueUpdates);
     solver.solveSudoku(err => {
@@ -46,7 +47,6 @@ class Board extends React.Component {
   };
 
   startInstantSolve = () => {
-    console.log("starting instant solvee ", !this.state.solving);
     if (this.state.solving) {
       console.log("Board is currently in solving state");
       return;
@@ -56,7 +56,7 @@ class Board extends React.Component {
     const solver = new Solver(board, (value, row, col) => {
       board[row][col] = {
         value: Number(value),
-        cellType: value !== 0 ? CellTypes.GENERATED : CellTypes.BLANK
+        cellType: Number(value) !== 0 ? CellTypes.GENERATED : CellTypes.BLANK
       };
       this.setState({
         board
@@ -66,6 +66,7 @@ class Board extends React.Component {
       if (err) {
         alert(err);
       }
+
       this.setState({
         solving: false
       });
@@ -123,13 +124,23 @@ class Board extends React.Component {
             onClick={this.startSolve}
           />
           <Button
-            disabled={this.state.solving}
+            disabled={this.state.solving || this.state.updateQueue.length > 0}
             buttonText="Solve Board Instantly"
             onClick={this.startInstantSolve}
           />
         </div>
         <div>
-          <h3>HOW TO USE</h3>
+          <h3>NOTES</h3>
+          <p>
+            {" "}
+            - Rules Of Sudoku -{" "}
+            <a
+              target="_blank"
+              href="http://www.counton.org/sudoku/rules-of-sudoku.php"
+            >
+              click here
+            </a>{" "}
+          </p>
           <p>
             {" "}
             - Clicking the <span className="bg-special">Reset Board</span>{" "}
@@ -156,6 +167,13 @@ class Board extends React.Component {
               does not show you the backtracking process on the board's UI.{" "}
             </b>
             It simply applies the final result to the board.
+          </p>
+          <p>
+            - If you notice a bug, raise an issue on this{" "}
+            <a href="https://github.com/tayoogunbiyi/sudoku-solver">
+              github repo{" "}
+            </a>
+            or reach me @ eyitayoogunbiyi at gmail dot com
           </p>
         </div>
       </div>
