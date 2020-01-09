@@ -29,3 +29,4 @@ npm run start
 
 1. It would be nice to have a dark mode theme. Who doesn't like dark mode ?
 2. Probably implement dancing links technique.
+3. Allow users to attempt solving on their own.
