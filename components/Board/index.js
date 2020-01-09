@@ -5,6 +5,7 @@ import Solver from "../../solver";
 import { buildBoard } from "../../util";
 import { CellTypes } from "../../constants";
 import "./index.css";
+import Loader from "../Loader";
 
 class Board extends React.Component {
   constructor(props) {
@@ -13,11 +14,15 @@ class Board extends React.Component {
     this.state = {
       board: boardData,
       updateQueue: [],
-      solving: false
+      solving: false,
+      loading: false
     };
   }
   renderRows() {
-    const { board } = this.state;
+    const { board, loading } = this.state;
+    if (loading) {
+      return <Loader />;
+    }
     return board.map((cellData, idx) => {
       return <Row key={idx} cellData={cellData} />;
     });
@@ -101,6 +106,9 @@ class Board extends React.Component {
   };
   resetBoard = () => {
     if (this.state.solving) return;
+    // simulate 2 second loading effect to ensure the user feels the board truly changed
+    this.setState({ loading: true });
+    setTimeout(() => this.setState({ loading: false }), 1000);
     this.clearUpdateBoardInterval();
     this.setState({
       solving: false,
@@ -111,6 +119,7 @@ class Board extends React.Component {
   render() {
     const queueLength = this.state.updateQueue.length;
     const isSolving = this.state.solving;
+    // return <Loader />;
     return (
       <div>
         <div className="board">{this.renderRows()}</div>
@@ -145,26 +154,24 @@ class Board extends React.Component {
           </p>
           <p>
             {" "}
-            - Clicking the <span className="bg-special">Reset Board</span>{" "}
+            - Clicking the <span className="bg-special">Random Board</span>{" "}
             button basically gives you a new board to try out the program on.
           </p>
           <p>
             {" "}
-            - Clicking the <span className="bg-special">
-              Solve In Steps
-            </span>{" "}
-            button solves the board in steps, and shows you the backtracking
-            process on the board (i.e how it undoes it choices and makes new
-            ones recursively). Please note that using this might take some time
-            to complete running due to the process of having the visually
-            display each decision attempted by the algorithm
+            - Clicking the{" "}
+            <span className="bg-special">Solve Board In Steps</span> button
+            solves the board in steps, and shows you the backtracking process on
+            the board (i.e how it undoes it choices and makes new choices
+            recursively). Please note that using this might take some time to
+            complete due to the process of having to visually display each
+            decision attempted by the algorithm.
           </p>
           <p>
             {" "}
-            - Clicking the <span className="bg-special">
-              Solve Instantly
-            </span>{" "}
-            button solves the board in steps, and but{" "}
+            - Clicking the{" "}
+            <span className="bg-special">Solve Board Instantly</span> button
+            solves the board in steps, and but{" "}
             <b>
               does not show you the backtracking process on the board's UI.{" "}
             </b>
