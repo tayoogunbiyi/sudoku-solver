@@ -3,8 +3,8 @@ import { CellTypes } from "../../constants";
 
 import "./index.css";
 
-const CellWrapper = ({ children }) => (
-  <div className="cell-wrapper">{children}</div>
+const CellWrapper = ({ extraClassName, children }) => (
+  <div className={`cell-wrapper ${extraClassName}`}>{children}</div>
 );
 
 const buildCellClassName = cellType => {
@@ -16,10 +16,10 @@ const buildCellClassName = cellType => {
   return `cell default-cell`;
 };
 
-const Cell = ({ value, cellType }) => {
+const Cell = ({ value, cellType, extraClassName }) => {
   const classNameString = buildCellClassName(cellType);
   return (
-    <CellWrapper>
+    <CellWrapper extraClassName={extraClassName}>
       <div className={classNameString}>{value}</div>
     </CellWrapper>
   );

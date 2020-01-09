@@ -25,7 +25,11 @@ class Board extends React.Component {
       return <Loader />;
     }
     return board.map((cellData, idx) => {
-      return <Row key={idx} cellData={cellData} />;
+      let extraClassName = idx % 3 === 0 ? `bold-top-cell` : ``;
+      extraClassName += idx === 8 ? `bold-bottom-cell` : ``;
+      return (
+        <Row key={idx} cellData={cellData} extraClassName={extraClassName} />
+      );
     });
   }
 

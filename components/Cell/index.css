@@ -25,6 +25,14 @@
   border-right: 5px solid black;
 }
 
+.bold-top-cell {
+  border-top: 5px solid black;
+}
+
+.bold-bottom-cell {
+  border-bottom: 5px solid black !important;
+}
+
 /* .cell-wrapper:nth-child() {
   border-top: 4px solid black;
 } */

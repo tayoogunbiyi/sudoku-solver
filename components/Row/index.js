@@ -3,11 +3,16 @@ import ReactDOM from "react-dom";
 import Cell from "../Cell";
 import "./index.css";
 
-const Row = ({ cellData }) => {
+const Row = ({ cellData, extraClassName }) => {
   return (
     <div className="row">
       {cellData.map(({ value, cellType }, idx) => (
-        <Cell key={idx} value={value} cellType={cellType} />
+        <Cell
+          extraClassName={extraClassName}
+          key={idx}
+          value={value}
+          cellType={cellType}
+        />
       ))}
     </div>
   );
