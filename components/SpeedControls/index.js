@@ -3,7 +3,7 @@ import "./index.css";
 
 class SpeedControl extends React.Component {
   state = {
-    currentSpeed: window.localStorage.getItem("speed") || "1X"
+    currentSpeed: window.localStorage.getItem("speed") || "1x"
   };
   toggleActiveSpeed = e => {
     const clickedSpeed = e.target.getAttribute("name");
