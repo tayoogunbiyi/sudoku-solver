@@ -109,22 +109,24 @@ class Board extends React.Component {
     });
   };
   render() {
+    const queueLength = this.state.updateQueue.length;
+    const isSolving = this.state.solving;
     return (
       <div>
         <div className="board">{this.renderRows()}</div>
         <div className="btn-group">
           <Button
-            disabled={this.state.solving}
-            buttonText="Reset Board"
+            disabled={isSolving}
+            buttonText={queueLength == 0 ? "Random Board" : "Restart"}
             onClick={this.resetBoard}
           />
           <Button
-            disabled={this.state.solving}
+            disabled={isSolving}
             buttonText="Solve Board In Steps"
             onClick={this.startSolve}
           />
           <Button
-            disabled={this.state.solving || this.state.updateQueue.length > 0}
+            disabled={isSolving || queueLength > 0}
             buttonText="Solve Board Instantly"
             onClick={this.startInstantSolve}
           />
