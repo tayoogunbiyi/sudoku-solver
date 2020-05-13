@@ -16,7 +16,7 @@ class Board extends React.Component {
       board: boardData,
       updateQueue: [],
       solving: false,
-      loading: false
+      loading: false,
     };
   }
   renderRows() {
@@ -33,7 +33,7 @@ class Board extends React.Component {
     });
   }
 
-  convertSpeedToMS = speed => {
+  convertSpeedToMS = (speed) => {
     const baseSpeed = 20;
     switch (speed) {
       case "0.5x":
@@ -56,21 +56,21 @@ class Board extends React.Component {
 
     this.setState({ solving: true });
     const solver = new Solver(board, this.queueUpdates);
-    solver.solveSudoku(err => {
+    solver.solveSudoku((err) => {
       if (err) {
         alert(err);
       }
       this.setState({
-        solving: false
+        solving: false,
       });
     });
     const currentSpeed = window.localStorage.getItem("speed");
     const intervalNumber = setInterval(
       this.applyUpdates,
-      this.convertSpeedToMS()
+      this.convertSpeedToMS(currentSpeed)
     );
     this.setState({
-      intervalNumber
+      intervalNumber,
     });
   };
 
@@ -84,19 +84,19 @@ class Board extends React.Component {
     const solver = new Solver(board, (value, row, col) => {
       board[row][col] = {
         value: Number(value),
-        cellType: Number(value) !== 0 ? CellTypes.GENERATED : CellTypes.BLANK
+        cellType: Number(value) !== 0 ? CellTypes.GENERATED : CellTypes.BLANK,
       };
       this.setState({
-        board
+        board,
       });
     });
-    solver.solveSudoku(err => {
+    solver.solveSudoku((err) => {
       if (err) {
         alert(err);
       }
 
       this.setState({
-        solving: false
+        solving: false,
       });
     });
   };
@@ -108,10 +108,10 @@ class Board extends React.Component {
       const { board } = this.state;
       board[row][col] = {
         value: Number(value),
-        cellType: value !== 0 ? CellTypes.GENERATED : CellTypes.BLANK
+        cellType: value !== 0 ? CellTypes.GENERATED : CellTypes.BLANK,
       };
       this.setState({
-        board
+        board,
       });
     }
   };
@@ -136,7 +136,7 @@ class Board extends React.Component {
     this.setState({
       solving: false,
       board: buildBoard(),
-      updateQueue: []
+      updateQueue: [],
     });
   };
   render() {
